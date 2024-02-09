@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def yearly_dataset(df, start_year, end_year):
+def make_yearly_dataset(df, start_year, end_year):
     if start_year == end_year:
         return df[df.index.year == start_year]
     else:
