@@ -1,0 +1,3 @@
+# .gitignore
+*.log
+MT_project.egg-info/
