@@ -1,7 +1,11 @@
 import numpy as np
 
+
 def yearly_dataset(df, start_year, end_year):
-    return df[(df.index.year >= start_year) & (df.index.year <= end_year)]
+    if start_year == end_year:
+        return df[df.index.year == start_year]
+    else:
+        return df[(df.index.year >= start_year) & (df.index.year <= end_year)]
 
 def transform_time_features(time_data, max_value):
     sin_values = np.sin(2 * np.pi * time_data / max_value)
