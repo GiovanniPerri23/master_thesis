@@ -63,3 +63,29 @@ def plot_error_metrics_barchart(error_table):
     plt.tight_layout()
     plt.show()
     
+def plot_model_rmse_and_loss(history):
+    
+    # Evaluate train and validation accuracies and losses
+    
+    train_rmse = history.history['root_mean_squared_error']
+    val_rmse = history.history['val_root_mean_squared_error']
+    
+    train_loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    
+    # Visualize epochs vs. train and validation accuracies and losses
+    
+    plt.figure(figsize=(20, 10))
+    plt.subplot(1, 2, 1)
+    plt.plot(train_rmse, label='Training RMSE')
+    plt.plot(val_rmse, label='Validation RMSE')
+    plt.legend()
+    plt.title('Epochs vs. Training and Validation RMSE')
+    
+    plt.subplot(1, 2, 2)
+    plt.plot(train_loss, label='Training Loss')
+    plt.plot(val_loss, label='Validation Loss')
+    plt.legend()
+    plt.title('Epochs vs. Training and Validation Loss')
+    
+    plt.show()    
