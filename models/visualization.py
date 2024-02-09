@@ -89,3 +89,36 @@ def plot_model_rmse_and_loss(history):
     plt.title('Epochs vs. Training and Validation Loss')
     
     plt.show()    
+
+def plot_error_metrics(error_table):
+    # Creazione dei subplots
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 4))
+
+    # Plot per NMAE
+    ax1.scatter(error_table['Column'], error_table['NMAE'], label='NMAE', alpha=0.7, marker='o')
+    ax1.set_xlabel('Columns')
+    ax1.set_ylabel('NMAE')
+    ax1.set_title('NMAE for Each Column')
+    ax1.legend()
+
+    # Plot per MAE, RMSE, MAPE
+    ax2.scatter(error_table['Column'], error_table['RMSE'], label='RMSE', alpha=0.7, marker='o')
+    ax2.scatter(error_table['Column'], error_table['MAPE'], label='MAPE', alpha=0.7, marker='o')
+    ax2.set_xlabel('Columns')
+    ax2.set_ylabel('Errors')
+    ax2.set_title('RMSE and MAPE for Each Column')
+    ax2.legend()
+
+    # Trova il minimo di NMAE, RMSE e MAPE
+    min_nmae_row = error_table.loc[error_table['NMAE'].idxmin()]
+    min_rmse_row = error_table.loc[error_table['RMSE'].idxmin()]
+    min_mape_row = error_table.loc[error_table['MAPE'].idxmin()]
+
+    # Stampa i minimi e le relative colonne
+    print("Min NMAE:", min_nmae_row['NMAE'], "for Column:", min_nmae_row['Column'])
+    print("Min RMSE:", min_rmse_row['RMSE'], "for Column:", min_rmse_row['Column'])
+    print("Min MAPE:", min_mape_row['MAPE'], "for Column:", min_mape_row['Column'])
+
+
+    plt.tight_layout()
+    plt.show()
