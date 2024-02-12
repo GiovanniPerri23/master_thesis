@@ -99,7 +99,37 @@ def timeseries_evaluation_metrics_func(y_true, y_pred):
     print(f'MAPE is : {round(np.mean(mape_values), dec)}')
     print(f'NMAE is : {round(np.mean(nmae_values), dec)}')
 
-def visual_single_timeseries_evaluation_metrics_func(y_true, y_pred):
+def calculate_evaluation_metrics(y_true, y_pred):
+    """
+    Calculate various evaluation metrics for forecasting a single time series.
+
+    Args:
+        y_true (array-like): Array of actual values.
+        y_pred (array-like): Array of predicted values.
+
+    Returns:
+        dict: Dictionary containing the calculated metric values (RMSE, MAPE, NMAE).
+    """
+    def mean_absolute_percentage_error(y_true, y_pred): 
+        y_true, y_pred = np.array(y_true), np.array(y_pred)
+        return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+
+    # Calculate evaluation metrics
+    mse = metrics.mean_squared_error(y_true, y_pred)
+    mae = metrics.mean_absolute_error(y_true, y_pred)
+    rmse = np.sqrt(mse)
+    mape = mean_absolute_percentage_error(y_true, y_pred)
+    nmae = NMAE_error(y_true, y_pred)  # NMAE_error needs to be defined
+
+    # Round the values and return as a dictionary
+    evaluation_results = {
+        'RMSE': round(rmse, 3),
+        'MAPE': round(mape, 3),
+        'NMAE': round(nmae, 3)
+    }
+
+    return evaluation_results
+
     def mean_absolute_percentage_error(y_true, y_pred): 
         y_true, y_pred = np.array(y_true), np.array(y_pred)
         return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
@@ -132,7 +162,7 @@ def evaluate_and_plot_timeseries(y_test_inv, forecast, show_plot=False):
         col_pred = forecast[:, col_idx]
 
         # Calcola le metriche per la colonna corrente
-        metrics_result = visual_single_timeseries_evaluation_metrics_func(col_true, col_pred)
+        metrics_result = calculate_evaluation_metrics(col_true, col_pred)
 
         # Estrai gli errori dalla risultato della funzione
         rmse, mape, nmae = metrics_result.values()
