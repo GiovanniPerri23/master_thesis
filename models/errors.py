@@ -29,25 +29,28 @@ def calculate_rmse_errors(y_test_inv, transforecast):
         errors.append(error_row)
     return errors
 
-def visualize_errors_with_timestamps(errors, timestamps):
+def visualize_errors_with_timestamps(errors, timestamps, mean_midnight_error):
     """
     Visualizza gli errori calcolati per ogni riga con i relativi timestamp utilizzando un grafico a barre.
 
     Args:
         errors (array-like): Array degli errori calcolati per ogni riga.
         timestamps (array-like): Array dei timestamp corrispondenti.
+        mean_midnight_error (float): Valore medio degli errori calcolati.
 
     Returns:
         None
     """
     # Plot degli errori con i timestamp utilizzando un grafico a barre
     plt.figure(figsize=(12, 6))
-    plt.bar(timestamps, errors, width=0.8, color='skyblue')
+    plt.bar(timestamps, errors, width=0.8, color='skyblue', label='Errors')
+    plt.axhline(y=mean_midnight_error, color='red', linestyle='--', label='Mean Error')
     plt.xlabel('Timestamp')
-    plt.ylabel('Error')
+    plt.ylabel('Error per day [€]')
     plt.title('Errors Over Time')
     plt.xticks(rotation=45)  # Ruota le etichette sull'asse x per una migliore leggibilità
     plt.grid(axis='y', linestyle='--', alpha=0.7)  # Linee orizzontali tratteggiate
+    plt.legend()
     plt.tight_layout()
     plt.show()
 
@@ -63,5 +66,5 @@ def filter_errors_at_midnight(errors, timestamps):
             midnight_errors.append(error)
             midnight_timestamps.append(timestamp)
             count += 1
-    print(count)        
+    print(f'Errore relativo a {count} giorni, a partire da mezzanotte')        
     return midnight_errors, midnight_timestamps
