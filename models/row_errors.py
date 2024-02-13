@@ -87,7 +87,6 @@ def visualize_errors_with_timestamps(errors, timestamps):
     plt.tight_layout()
     plt.show()
 
-
 def filter_errors_at_midnight(errors, timestamps):
     '''Function used to filter only forecasts starting at 00.00'''
     midnight_errors = []
