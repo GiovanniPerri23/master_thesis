@@ -13,7 +13,7 @@ def transform_time_features(time_data, max_value):
     return sin_values, cos_values
 
 def create_cyclic_features(dataset_input):
-    dataset_input['hour_sin'], dataset_input['hour_cos'] = transform_time_features(dataset_input['Ora'], 24)
-    dataset_input['day_sin'], dataset_input['day_cos'] = transform_time_features(dataset_input['GiornoSettimana'], 7)
+    dataset_input.loc[:, 'hour_sin'], dataset_input.loc[:, 'hour_cos'] = transform_time_features(dataset_input['Ora'], 24)
+    dataset_input.loc[:, 'day_sin'], dataset_input.loc[:, 'day_cos'] = transform_time_features(dataset_input['GiornoSettimana'], 7)
     dataset_input.drop(['Ora', 'GiornoSettimana'], axis=1, inplace=True)
     return dataset_input
