@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn import metrics
 import matplotlib.pyplot as plt
+import pandas as pd
 
 def calculate_mae_errors(y_test_inv, transforecast):
     errors = []
@@ -68,3 +69,19 @@ def filter_errors_at_midnight(errors, timestamps):
             count += 1
     print(f'Errore relativo a {count} giorni, a partire da mezzanotte')        
     return midnight_errors, midnight_timestamps
+
+def errors_on_rows(y_test_inv, forecast, dataset_input):
+    errors = calculate_rmse_errors(y_test_inv, forecast)
+    # Ottieni il timestamp per le righe di test
+    test_timestamps = dataset_input.iloc[-y_test_inv.shape[0]:].index
+
+    # Converti l'indice in oggetti datetime
+    test_timestamps = pd.to_datetime(test_timestamps)
+    midnight_errors, midnight_timestamps = filter_errors_at_midnight(errors, test_timestamps)
+
+    mean_midnight_error = np.mean(midnight_errors)
+
+    visualize_errors_with_timestamps(midnight_errors, midnight_timestamps, mean_midnight_error)
+
+
+    print("Media degli errori relativi alla mezzanotte:", mean_midnight_error)
