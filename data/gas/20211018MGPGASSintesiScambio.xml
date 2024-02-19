@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="negoziazione_continua">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="DataSessione" type="xs:string" minOccurs="0" />
+                <xs:element name="NomeProdotto" type="xs:string" minOccurs="0" />
+                <xs:element name="PrimoPrezzo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UltimoPrezzo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMassimo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMinimo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMedio" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoControllo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Volumi" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PosizioniAperte" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Abbinamenti" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <negoziazione_continua>
+    <DataSessione>20211018</DataSessione>
+    <NomeProdotto>MGP-2021-10-19</NomeProdotto>
+    <PrimoPrezzo>93.6990</PrimoPrezzo>
+    <UltimoPrezzo>90.5000</UltimoPrezzo>
+    <PrezzoMassimo>100.0000</PrezzoMassimo>
+    <PrezzoMinimo>89.0000</PrezzoMinimo>
+    <PrezzoMedio>95.642329</PrezzoMedio>
+    <PrezzoControllo>95.5160</PrezzoControllo>
+    <Volumi>192384.00000</Volumi>
+    <PosizioniAperte>156768.000000</PosizioniAperte>
+    <Abbinamenti>133</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20211018</DataSessione>
+    <NomeProdotto>MGP-2021-10-20</NomeProdotto>
+    <PrezzoControllo>95.9300</PrezzoControllo>
+    <PosizioniAperte>0.000000</PosizioniAperte>
+    <Abbinamenti>0</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20211018</DataSessione>
+    <NomeProdotto>MGP-2021-10-21</NomeProdotto>
+    <PrezzoControllo>95.9300</PrezzoControllo>
+    <PosizioniAperte>0.000000</PosizioniAperte>
+    <Abbinamenti>0</Abbinamenti>
+  </negoziazione_continua>
+</NewDataSet>

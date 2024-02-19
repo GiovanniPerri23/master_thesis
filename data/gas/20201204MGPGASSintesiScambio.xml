@@ -1,0 +1,80 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="negoziazione_continua">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="DataSessione" type="xs:string" minOccurs="0" />
+                <xs:element name="NomeProdotto" type="xs:string" minOccurs="0" />
+                <xs:element name="PrimoPrezzo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UltimoPrezzo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMassimo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMinimo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMedio" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoControllo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Volumi" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PosizioniAperte" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Abbinamenti" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <negoziazione_continua>
+    <DataSessione>20201204</DataSessione>
+    <NomeProdotto>MGP-2020-12-05</NomeProdotto>
+    <PrimoPrezzo>15.0000</PrimoPrezzo>
+    <UltimoPrezzo>14.9010</UltimoPrezzo>
+    <PrezzoMassimo>15.9000</PrezzoMassimo>
+    <PrezzoMinimo>14.5000</PrezzoMinimo>
+    <PrezzoMedio>14.995447</PrezzoMedio>
+    <PrezzoControllo>15.4930</PrezzoControllo>
+    <Volumi>53688.00000</Volumi>
+    <PosizioniAperte>37656.000000</PosizioniAperte>
+    <Abbinamenti>30</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20201204</DataSessione>
+    <NomeProdotto>MGP-2020-12-06</NomeProdotto>
+    <PrimoPrezzo>14.7000</PrimoPrezzo>
+    <UltimoPrezzo>14.2000</UltimoPrezzo>
+    <PrezzoMassimo>14.8000</PrezzoMassimo>
+    <PrezzoMinimo>14.0000</PrezzoMinimo>
+    <PrezzoMedio>14.558296</PrezzoMedio>
+    <PrezzoControllo>15.2020</PrezzoControllo>
+    <Volumi>126384.00000</Volumi>
+    <PosizioniAperte>122688.000000</PosizioniAperte>
+    <Abbinamenti>39</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20201204</DataSessione>
+    <NomeProdotto>MGP-2020-12-07</NomeProdotto>
+    <PrimoPrezzo>15.8000</PrimoPrezzo>
+    <UltimoPrezzo>15.0000</UltimoPrezzo>
+    <PrezzoMassimo>15.9500</PrezzoMassimo>
+    <PrezzoMinimo>15.0000</PrezzoMinimo>
+    <PrezzoMedio>15.444980</PrezzoMedio>
+    <PrezzoControllo>15.8050</PrezzoControllo>
+    <Volumi>135912.00000</Volumi>
+    <PosizioniAperte>115896.000000</PosizioniAperte>
+    <Abbinamenti>78</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20201204</DataSessione>
+    <NomeProdotto>WE-2020-49</NomeProdotto>
+    <PrimoPrezzo>14.6500</PrimoPrezzo>
+    <UltimoPrezzo>14.9000</UltimoPrezzo>
+    <PrezzoMassimo>15.1900</PrezzoMassimo>
+    <PrezzoMinimo>14.4000</PrezzoMinimo>
+    <PrezzoMedio>14.805650</PrezzoMedio>
+    <PrezzoControllo>15.4930</PrezzoControllo>
+    <Volumi>213264.00000</Volumi>
+    <PosizioniAperte>175008.000000</PosizioniAperte>
+    <Abbinamenti>78</Abbinamenti>
+  </negoziazione_continua>
+</NewDataSet>

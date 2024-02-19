@@ -1,0 +1,61 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="negoziazione_continua">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="DataSessione" type="xs:string" minOccurs="0" />
+                <xs:element name="NomeProdotto" type="xs:string" minOccurs="0" />
+                <xs:element name="PrimoPrezzo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UltimoPrezzo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMassimo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMinimo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMedio" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoControllo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Volumi" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PosizioniAperte" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Abbinamenti" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <negoziazione_continua>
+    <DataSessione>20190804</DataSessione>
+    <NomeProdotto>MGP-2019-08-05</NomeProdotto>
+    <PrimoPrezzo>12.5000</PrimoPrezzo>
+    <UltimoPrezzo>12.7000</UltimoPrezzo>
+    <PrezzoMassimo>12.7000</PrezzoMassimo>
+    <PrezzoMinimo>12.5000</PrezzoMinimo>
+    <PrezzoMedio>12.561111</PrezzoMedio>
+    <PrezzoControllo>12.7310</PrezzoControllo>
+    <Volumi>8640.00000</Volumi>
+    <PosizioniAperte>39096.000000</PosizioniAperte>
+    <Abbinamenti>2</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20190804</DataSessione>
+    <NomeProdotto>MGP-2019-08-06</NomeProdotto>
+    <PrezzoControllo>12.6590</PrezzoControllo>
+    <PosizioniAperte>2400.000000</PosizioniAperte>
+    <Abbinamenti>0</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20190804</DataSessione>
+    <NomeProdotto>MGP-2019-08-07</NomeProdotto>
+    <PrimoPrezzo>12.6000</PrimoPrezzo>
+    <UltimoPrezzo>12.6000</UltimoPrezzo>
+    <PrezzoMassimo>12.6000</PrezzoMassimo>
+    <PrezzoMinimo>12.6000</PrezzoMinimo>
+    <PrezzoMedio>12.600000</PrezzoMedio>
+    <PrezzoControllo>12.6590</PrezzoControllo>
+    <Volumi>2400.00000</Volumi>
+    <PosizioniAperte>2400.000000</PosizioniAperte>
+    <Abbinamenti>1</Abbinamenti>
+  </negoziazione_continua>
+</NewDataSet>

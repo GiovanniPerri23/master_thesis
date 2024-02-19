@@ -1,0 +1,68 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="negoziazione_continua">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="DataSessione" type="xs:string" minOccurs="0" />
+                <xs:element name="NomeProdotto" type="xs:string" minOccurs="0" />
+                <xs:element name="PrimoPrezzo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UltimoPrezzo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMassimo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMinimo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoMedio" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PrezzoControllo" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Volumi" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PosizioniAperte" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Abbinamenti" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <negoziazione_continua>
+    <DataSessione>20220407</DataSessione>
+    <NomeProdotto>MGP-2022-04-08</NomeProdotto>
+    <PrimoPrezzo>105</PrimoPrezzo>
+    <UltimoPrezzo>104.5</UltimoPrezzo>
+    <PrezzoMassimo>106.749</PrezzoMassimo>
+    <PrezzoMinimo>99</PrezzoMinimo>
+    <PrezzoMedio>103.859211</PrezzoMedio>
+    <PrezzoControllo>105.69</PrezzoControllo>
+    <Volumi>116616</Volumi>
+    <PosizioniAperte>87720</PosizioniAperte>
+    <Abbinamenti>142</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20220407</DataSessione>
+    <NomeProdotto>MGP-2022-04-09</NomeProdotto>
+    <PrezzoControllo>110.398</PrezzoControllo>
+    <PosizioniAperte>0</PosizioniAperte>
+    <Abbinamenti>0</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20220407</DataSessione>
+    <NomeProdotto>MGP-2022-04-10</NomeProdotto>
+    <PrezzoControllo>110.398</PrezzoControllo>
+    <PosizioniAperte>0</PosizioniAperte>
+    <Abbinamenti>0</Abbinamenti>
+  </negoziazione_continua>
+  <negoziazione_continua>
+    <DataSessione>20220407</DataSessione>
+    <NomeProdotto>WE-2022-15</NomeProdotto>
+    <PrimoPrezzo>104</PrimoPrezzo>
+    <UltimoPrezzo>104</UltimoPrezzo>
+    <PrezzoMassimo>104</PrezzoMassimo>
+    <PrezzoMinimo>104</PrezzoMinimo>
+    <PrezzoMedio>104</PrezzoMedio>
+    <PrezzoControllo>110.398</PrezzoControllo>
+    <Volumi>2160</Volumi>
+    <PosizioniAperte>2160</PosizioniAperte>
+    <Abbinamenti>3</Abbinamenti>
+  </negoziazione_continua>
+</NewDataSet>
