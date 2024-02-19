@@ -63,6 +63,7 @@ if __name__ == "__main__":
     df_stime = create_dataframe_from_xml("stimafabbisogno", './/marketintervaldetail')
     df_gas = create_dataframe_from_xml('gas', './/negoziazione_continua')
     df_demand = create_dataframe_from_xml("fabbisogno", './/Fabbisogno')
+    print('Dataframes created')
 
     # Preprocessing GAS data
     df_gas = df_gas.groupby('NomeProdotto')['PrezzoMedio'].last().reset_index()
@@ -77,6 +78,8 @@ if __name__ == "__main__":
     df_gas['GAS'] = pd.to_numeric(df_gas['GAS'], errors='coerce')
 
     df_gas = df_gas.loc[df_gas.index.repeat(24)].reset_index(drop=True)
+    print('GAS data processed')
 
     df = pd.concat([df_price['Data'], df_price['Ora'], df_price['PUN'], df_stime['Totale'], df_gas, df_demand['Italia']], axis=1)
     df.to_csv("data_to_process.csv", index=True)
+    print('Data saved to data_to_process.csv')
