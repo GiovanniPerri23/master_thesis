@@ -60,10 +60,13 @@ def nan_counts_func(df):
 
 if __name__ == "__main__":
     df_price = create_dataframe_from_xml("prices", './/Prezzi')
+    print('Price data created')
     df_stime = create_dataframe_from_xml("stimafabbisogno", './/marketintervaldetail')
+    print('Stime data created')
     df_gas = create_dataframe_from_xml('gas', './/negoziazione_continua')
+    print('Gas data created')
     df_demand = create_dataframe_from_xml("fabbisogno", './/Fabbisogno')
-    print('Dataframes created')
+    print('Demand data created')
 
     # Preprocessing GAS data
     df_gas = df_gas.groupby('NomeProdotto')['PrezzoMedio'].last().reset_index()
@@ -78,8 +81,32 @@ if __name__ == "__main__":
     df_gas['GAS'] = pd.to_numeric(df_gas['GAS'], errors='coerce')
 
     df_gas = df_gas.loc[df_gas.index.repeat(24)].reset_index(drop=True)
-    print('GAS data processed')
 
-    df = pd.concat([df_price['Data'], df_price['Ora'], df_price['PUN'], df_stime['Totale'], df_gas, df_demand['Italia']], axis=1)
+    # Preprocessing demand data
+            # Estrai le colonne numeriche da "PUN" a "XGRE"
+    numeric_columns = df_demand.loc[:, 'Italia':'SUD']
+
+    for col in numeric_columns.columns:
+        df_demand[col] = df_demand[col].str.replace(',', '.').astype(float)
+    df_demand['Data'] = pd.to_datetime(df_demand['Data'])
+
+    df_demand = df_demand.drop(columns = 'Mercato')
+
+    df_demand.rename(columns={"Italia": "Total_Load"}, errors="raise")
+
+    # Preprocessing price data
+    numeric_columns = df_price.loc[:, 'PUN':'XGRE']
+
+    for col in numeric_columns.columns:
+        df_price[col] = df_price[col].str.replace(',', '.').astype(float)
+    
+    df_price['Data'] = pd.to_datetime(df_price['Data'])
+
+    df_price = df_price.drop(columns = 'Mercato')
+
+    df_price = df_price.drop(df_price.columns[11:25], axis=1)
+
+
+    df = pd.concat([df_price, df_gas, df_demand], axis=1)
     df.to_csv("data_to_process.csv", index=True)
     print('Data saved to data_to_process.csv')
