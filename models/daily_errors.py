@@ -70,8 +70,7 @@ def filter_errors_at_midnight(errors, timestamps):
     print(f'Errore relativo a {count} giorni, a partire da mezzanotte')        
     return midnight_errors, midnight_timestamps
 
-def errors_on_rows(y_test_inv, forecast, dataset_input):
-    errors = calculate_rmse_errors(y_test_inv, forecast)
+def errors_on_rows(y_test_inv, forecast, dataset_input, errors):
     # Ottieni il timestamp per le righe di test
     test_timestamps = dataset_input.iloc[-y_test_inv.shape[0]:].index
 
