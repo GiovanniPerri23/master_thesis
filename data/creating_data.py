@@ -73,9 +73,10 @@ if __name__ == "__main__":
     df_gas.columns = ['NomeProdotto', 'GAS']
     df_gas['NomeProdotto'] = df_gas['NomeProdotto'].str.replace('MGP-', '').str.replace('WE-', '')
 
-    # To FIX: bisogna rimuovere i valori WE- dal dataset, per ora li rimuovo manualmente
-    df_gas = df_gas.iloc[:2176]
-    # df_gas = df_gas.iloc[:31,]
+    df_gas['GAS'] = df_gas['GAS'].fillna(method='ffill')
+    df_gas.dropna(inplace=True)
+    df_gas = df_gas[~df_gas['NomeProdotto'].str.match(r'\d{4}-\d{2}$')]
+
     df_gas['DataG'] = pd.to_datetime(df_gas['NomeProdotto'])
     df_gas = df_gas[['DataG', 'GAS']]
     df_gas['GAS'] = pd.to_numeric(df_gas['GAS'], errors='coerce')
@@ -83,8 +84,9 @@ if __name__ == "__main__":
     df_gas = df_gas.loc[df_gas.index.repeat(24)].reset_index(drop=True)
 
     # Preprocessing demand data
-            # Estrai le colonne numeriche da "PUN" a "XGRE"
+    # Estrai le colonne numeriche da "PUN" a "XGRE"
     numeric_columns = df_demand.loc[:, 'Italia':'SUD']
+
 
     for col in numeric_columns.columns:
         df_demand[col] = df_demand[col].str.replace(',', '.').astype(float)
@@ -92,7 +94,8 @@ if __name__ == "__main__":
 
     df_demand = df_demand.drop(columns = 'Mercato')
 
-    df_demand.rename(columns={"Italia": "Total_Load"}, errors="raise")
+    df_demand.loc[:, 'Italia':'SUD'] = df_demand.loc[:, 'Italia':'SUD'].add_suffix('_load')
+    df_demand.rename(columns={"Italia_load": "Total_Load"}, errors="raise")
 
     # Preprocessing price data
     numeric_columns = df_price.loc[:, 'PUN':'XGRE']

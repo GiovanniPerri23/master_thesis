@@ -6,13 +6,12 @@ from workalendar.europe import Italy
 
 
 def load_data():
-    # Load data
+    # Load data. TO FIX -> change to generic path
     data = pd.read_csv('data_to_process.csv')
     return data
 
 
 def split_temporal_indices(df):
-    # Estrai l'anno, il mese, il giorno della settimana e l'ora dalla colonna 'DataCompleta'
     df['Mese'] = df['Data'].dt.month
     df['GiornoSettimana'] = df['Data'].dt.dayofweek
     df['Weekend'] = df['GiornoSettimana'].apply(lambda x: 1 if x > 4 else 0)  # 5 e 6 rappresentano sabato e domenica
