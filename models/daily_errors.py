@@ -70,7 +70,21 @@ def filter_errors_at_midnight(errors, timestamps):
     print(f'Errore relativo a {count} giorni, a partire da mezzanotte')        
     return midnight_errors, midnight_timestamps
 
-def errors_on_rows(y_test_inv, forecast, dataset_input, errors):
+def errors_on_rows(y_test_inv, forecast, dataset_input, error_function):
+    """
+    Calculate errors based on the specified error function and visualize them.
+
+    Args:
+        y_test_inv (ndarray): The actual values of the target variable.
+        forecast (ndarray): The forecasted values of the target variable.
+        dataset_input (DataFrame): The input dataset.
+        error_function (function): The error function to use for calculating errors.
+
+    Returns:
+        float: The mean error calculated based on the chosen error function.
+    """
+    errors = error_function(y_test_inv, forecast)
+
     # Ottieni il timestamp per le righe di test
     test_timestamps = dataset_input.iloc[-y_test_inv.shape[0]:].index
 
@@ -82,5 +96,6 @@ def errors_on_rows(y_test_inv, forecast, dataset_input, errors):
 
     visualize_errors_with_timestamps(midnight_errors, midnight_timestamps, mean_midnight_error)
 
+    print(f"Mean Error ({error_function.__name__}):", mean_midnight_error)
 
-    print("Media degli errori relativi alla mezzanotte:", mean_midnight_error)
+    return mean_midnight_error
