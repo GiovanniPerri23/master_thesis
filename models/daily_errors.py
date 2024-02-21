@@ -12,6 +12,15 @@ def calculate_mae_errors(y_test_inv, transforecast):
         errors.append(error_row)
     return errors
 
+def calculate_nmae_errors(y_test_inv, transforecast):
+    errors = []
+    for row_idx in range(y_test_inv.shape[0]):
+        y_true_row = y_test_inv[row_idx, :]
+        y_pred_row = transforecast[row_idx, :]
+        error_row = metrics.mean_absolute_error(y_true_row, y_pred_row) / np.mean(np.abs(y_true_row))
+        errors.append(error_row)
+    return errors
+
 def calculate_mape_errors(y_test_inv, transforecast):
     errors = []
     for row_idx in range(y_test_inv.shape[0]):
