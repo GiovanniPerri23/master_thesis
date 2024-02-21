@@ -44,27 +44,28 @@ def multivariate_data(dataset, target, start_index, end_index, history_size,
     
     return np.array(data), np.array(labels)
 
-def prepare_data(dataset_input, univariate=False):
+def prepare_dataset_for_training(dataset_input, target_column='PUN', univariate=False):
     """
     Prepare the dataset for training.
 
     Args:
         dataset_input (DataFrame): The input dataset.
+        target_column (str, optional): The name of the target column. Defaults to 'PUN'.
         univariate (bool, optional): Indicates whether the data should be prepared as univariate or multivariate.
                                      Defaults to False.
 
     Returns:
         tuple: A tuple containing the input features X and the target variable y.
     """
-    # Extract the target variable 'PUN'
+    # Extract the target variable
     if univariate:
         # Prepare data as univariate
-        X = dataset_input['PUN'].values.reshape(-1, 1)
+        X = dataset_input[target_column].values.reshape(-1, 1)
     else:
         # Prepare data as multivariate
-        X = dataset_input.values
+        X = dataset_input.drop(columns=[target_column]).values
 
-    # Target variable y is the same as 'PUN'
-    y = dataset_input['PUN'].values.reshape(-1, 1)
+    # Target variable y
+    y = dataset_input[target_column].values.reshape(-1, 1)
 
     return X, y
