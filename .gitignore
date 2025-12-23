@@ -2,3 +2,6 @@
 *.log
 MT_project.egg-info/
 my_try/
+__pycache__/
+*.pyc
+*.pyo
