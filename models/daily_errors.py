@@ -2,6 +2,7 @@ import numpy as np
 from sklearn import metrics
 import matplotlib.pyplot as plt
 import pandas as pd
+from .evaluation_func import mean_absolute_percentage_error, NMAE_error
 
 def calculate_row_errors(y_test_inv, transforecast, error_function):
     """
@@ -30,13 +31,11 @@ def calculate_mae_errors(y_test_inv, transforecast):
 
 def calculate_nmae_errors(y_test_inv, transforecast):
     """Calculate NMAE errors for each row."""
-    return calculate_row_errors(y_test_inv, transforecast,
-                                lambda y_true, y_pred: metrics.mean_absolute_error(y_true, y_pred) / np.mean(np.abs(y_true)))
+    return calculate_row_errors(y_test_inv, transforecast, NMAE_error)
 
 def calculate_mape_errors(y_test_inv, transforecast):
     """Calculate MAPE errors for each row."""
-    return calculate_row_errors(y_test_inv, transforecast,
-                                lambda y_true, y_pred: metrics.mean_absolute_percentage_error(y_true, y_pred))
+    return calculate_row_errors(y_test_inv, transforecast, mean_absolute_percentage_error)
 
 def calculate_rmse_errors(y_test_inv, transforecast):
     """Calculate RMSE errors for each row."""

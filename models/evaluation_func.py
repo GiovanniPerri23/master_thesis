@@ -6,7 +6,13 @@ import pandas as pd
 def mean_absolute_percentage_error(y_true, y_pred): 
     """Calculate the mean absolute percentage error."""
     y_true, y_pred = np.array(y_true), np.array(y_pred)
-    return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+    # Create a mask to avoid division by zero
+    mask = y_true != 0
+    if not mask.any():
+        return 0.0  # Return 0 if all values are zero
+    y_true_masked = y_true[mask]
+    y_pred_masked = y_pred[mask]
+    return np.mean(np.abs((y_true_masked - y_pred_masked) / y_true_masked)) * 100
 
 def NMAE_error(y_true, y_pred):
     """
@@ -20,7 +26,10 @@ def NMAE_error(y_true, y_pred):
         float: Normalized mean absolute error.
     """
     y_true, y_pred = np.array(y_true), np.array(y_pred)
-    return metrics.mean_absolute_error(y_true, y_pred) / np.mean(np.abs(y_true))
+    mean_abs_true = np.mean(np.abs(y_true))
+    if mean_abs_true == 0:
+        return 0.0  # Avoid division by zero
+    return metrics.mean_absolute_error(y_true, y_pred) / mean_abs_true
 
 def single_timeseries_evaluation_metrics_func(y_true, y_pred):
     """
