@@ -3,41 +3,45 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 import pandas as pd
 
-def calculate_mae_errors(y_test_inv, transforecast):
+def calculate_row_errors(y_test_inv, transforecast, error_function):
+    """
+    Calculate errors for each row using the specified error function.
+    
+    Args:
+        y_test_inv (ndarray): The actual values.
+        transforecast (ndarray): The forecasted values.
+        error_function (callable): Function that takes y_true_row and y_pred_row and returns error.
+    
+    Returns:
+        list: List of errors for each row.
+    """
     errors = []
     for row_idx in range(y_test_inv.shape[0]):
         y_true_row = y_test_inv[row_idx, :]
         y_pred_row = transforecast[row_idx, :]
-        error_row = metrics.mean_absolute_error(y_true_row, y_pred_row)
+        error_row = error_function(y_true_row, y_pred_row)
         errors.append(error_row)
     return errors
+
+def calculate_mae_errors(y_test_inv, transforecast):
+    """Calculate MAE errors for each row."""
+    return calculate_row_errors(y_test_inv, transforecast, 
+                                lambda y_true, y_pred: metrics.mean_absolute_error(y_true, y_pred))
 
 def calculate_nmae_errors(y_test_inv, transforecast):
-    errors = []
-    for row_idx in range(y_test_inv.shape[0]):
-        y_true_row = y_test_inv[row_idx, :]
-        y_pred_row = transforecast[row_idx, :]
-        error_row = metrics.mean_absolute_error(y_true_row, y_pred_row) / np.mean(np.abs(y_true_row))
-        errors.append(error_row)
-    return errors
+    """Calculate NMAE errors for each row."""
+    return calculate_row_errors(y_test_inv, transforecast,
+                                lambda y_true, y_pred: metrics.mean_absolute_error(y_true, y_pred) / np.mean(np.abs(y_true)))
 
 def calculate_mape_errors(y_test_inv, transforecast):
-    errors = []
-    for row_idx in range(y_test_inv.shape[0]):
-        y_true_row = y_test_inv[row_idx, :]
-        y_pred_row = transforecast[row_idx, :]
-        error_row = metrics.mean_absolute_percentage_error(y_true_row, y_pred_row)
-        errors.append(error_row)
-    return errors
+    """Calculate MAPE errors for each row."""
+    return calculate_row_errors(y_test_inv, transforecast,
+                                lambda y_true, y_pred: metrics.mean_absolute_percentage_error(y_true, y_pred))
 
 def calculate_rmse_errors(y_test_inv, transforecast):
-    errors = []
-    for row_idx in range(y_test_inv.shape[0]):
-        y_true_row = y_test_inv[row_idx, :]
-        y_pred_row = transforecast[row_idx, :]
-        error_row = np.sqrt(metrics.mean_squared_error(y_true_row, y_pred_row))
-        errors.append(error_row)
-    return errors
+    """Calculate RMSE errors for each row."""
+    return calculate_row_errors(y_test_inv, transforecast,
+                                lambda y_true, y_pred: np.sqrt(metrics.mean_squared_error(y_true, y_pred)))
 
 def visualize_errors_with_timestamps(errors, timestamps, mean_midnight_error):
     """

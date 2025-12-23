@@ -3,6 +3,25 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 import pandas as pd
 
+def mean_absolute_percentage_error(y_true, y_pred): 
+    """Calculate the mean absolute percentage error."""
+    y_true, y_pred = np.array(y_true), np.array(y_pred)
+    return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+
+def NMAE_error(y_true, y_pred):
+    """
+    Calculate the normalized mean absolute error.
+
+    Args:
+        y_true (array-like): True values.
+        y_pred (array-like): Predicted values.
+
+    Returns:
+        float: Normalized mean absolute error.
+    """
+    y_true, y_pred = np.array(y_true), np.array(y_pred)
+    return metrics.mean_absolute_error(y_true, y_pred) / np.mean(np.abs(y_true))
+
 def single_timeseries_evaluation_metrics_func(y_true, y_pred):
     """
     Calculate evaluation metrics for a single time series.
@@ -14,11 +33,6 @@ def single_timeseries_evaluation_metrics_func(y_true, y_pred):
     Returns:
         None
     """
-
-    def mean_absolute_percentage_error(y_true, y_pred): 
-        """Calculate the mean absolute percentage error."""
-        y_true, y_pred = np.array(y_true), np.array(y_pred)
-        return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
 
     # Calculate evaluation metrics
     mse = metrics.mean_squared_error(y_true, y_pred)
@@ -36,20 +50,6 @@ def single_timeseries_evaluation_metrics_func(y_true, y_pred):
     print(f'MAPE is : {round(mape, dec)}')
     print(f'NMAE is : {round(nmae, dec)}')
 
-def NMAE_error(y_true, y_pred):
-    """
-    Calculate the normalized mean absolute error.
-
-    Args:
-        y_true (array-like): True values.
-        y_pred (array-like): Predicted values.
-
-    Returns:
-        float: Normalized mean absolute error.
-    """
-    y_true, y_pred = np.array(y_true), np.array(y_pred)
-    return metrics.mean_absolute_error(y_true, y_pred) / np.mean(np.abs(y_true))
-
 def timeseries_evaluation_metrics_func(y_true, y_pred):
     """
     Calculate evaluation metrics for multiple time series.
@@ -61,20 +61,6 @@ def timeseries_evaluation_metrics_func(y_true, y_pred):
     Returns:
         None
     """
-
-    def mean_absolute_percentage_error(y_true, y_pred):
-        """
-        Calculate the mean absolute percentage error for each time series column.
-        """
-        mask = y_true != 0  # Create a mask to avoid division by zero
-        y_true_masked = y_true[mask]
-        y_pred_masked = y_pred[mask]
-        return np.mean(np.abs((y_true_masked - y_pred_masked) / y_true_masked)) * 100
-
-    def NMAE_error(y_true, y_pred):
-        """Calculate the normalized mean absolute error."""
-        y_true, y_pred = np.array(y_true), np.array(y_pred)
-        return metrics.mean_absolute_error(y_true, y_pred) / np.mean(np.abs(y_true))
    
     mae_values = []
     rmse_values = []
@@ -110,16 +96,12 @@ def calculate_evaluation_metrics(y_true, y_pred):
     Returns:
         dict: Dictionary containing the calculated metric values (RMSE, MAPE, NMAE).
     """
-    def mean_absolute_percentage_error(y_true, y_pred): 
-        y_true, y_pred = np.array(y_true), np.array(y_pred)
-        return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
-
     # Calculate evaluation metrics
     mse = metrics.mean_squared_error(y_true, y_pred)
     mae = metrics.mean_absolute_error(y_true, y_pred)
     rmse = np.sqrt(mse)
     mape = mean_absolute_percentage_error(y_true, y_pred)
-    nmae = NMAE_error(y_true, y_pred)  # NMAE_error needs to be defined
+    nmae = NMAE_error(y_true, y_pred)
 
     # Round the values and return as a dictionary
     evaluation_results = {
@@ -129,26 +111,6 @@ def calculate_evaluation_metrics(y_true, y_pred):
     }
 
     return evaluation_results
-
-    def mean_absolute_percentage_error(y_true, y_pred): 
-        y_true, y_pred = np.array(y_true), np.array(y_pred)
-        return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
-
-    mse = metrics.mean_squared_error(y_true, y_pred)
-    mae = metrics.mean_absolute_error(y_true, y_pred)
-    rmse = np.sqrt(mse)
-    mape = mean_absolute_percentage_error(y_true, y_pred)
-    nmae = NMAE_error(y_true, y_pred)
-
-    dec = 3  # cifra di approssimazione
-
-    result = {
-        'RMSE': round(rmse, dec),
-        'MAPE': round(mape, dec),
-        'NMAE': round(nmae, dec)
-    }
-
-    return result
 
 def evaluate_and_plot_timeseries(y_test_inv, forecast, show_plot=False):
     # locals()['error_list' + forecast] = []
